@@ -1,0 +1,682 @@
+<?php
+require_once 'connect/connect.php';
+session_start()
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SALES</title>
+  <link rel="stylesheet" href="styles/sales.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+  <link href="font-awesome.css" rel="stylesheet" />
+</head>
+
+<body>
+<nav class="sidebar close" style="overflow: hidden;">
+<header>
+<div class="image-text">
+  <span class="image">
+  <img src="img/logo2.png" alt="logo" style="width: 75%; margin-top: -20px;"/>
+  </span>
+</div>
+  <i class="bx bx-menu toggle"></i>
+</header>
+
+<div class="menu-bar">
+<div class="menu">
+    <li class="nav-link">
+      <a href="dashboard.php">
+      <i class="bx bx-home-alt icon"></i>
+      <span class="text nav-text"> Dashboard </span>
+      </a>
+    </li>
+
+    <li class="nav-link">
+      <a href="cashier.html">
+      <i class="bx bx-credit-card icon"></i>
+      <span class="text nav-text"> Cashier </span>
+      </a>
+    </li>
+
+    <li class="nav-link">
+      <a href="inventory.html">
+      <i class="bx bxs-package icon"></i> 
+      <span class="text nav-text"> Inventory </span>
+      </a>
+    </li>
+
+    <li class="nav-link">
+      <a href="humanresources.html">
+      <i class="bx bx bx-group icon"></i>
+      <span class="text nav-text"> Human Resources </span>
+      </a>
+    </li>
+
+    <li class="nav-link">
+      <a href="customerservice.html">
+      <i class="bx bxs-user-voice icon"></i>
+      <span class="text nav-text"> Customer Service </span>
+      </a>
+    </li>
+
+    <li class="nav-link">
+      <a href="sales.html">
+      <i class="bx bx-trending-up icon"></i> 
+      <span class="text nav-text"> Sales </span>
+      </a>
+    </li>
+
+    <div class="bottom-content">
+    <hr style="height: 1px; opacity: 40%; border-width: 0; background-color: #BFEA7C;"/>
+
+    <li class="nav-link">
+      <a href="settings.html">
+      <i class="bx bx-cog icon"></i>
+      <span class="text nav-text"> Settings </span>
+      </a>
+    </li>
+
+    <li class="nav-link">
+      <a href="logout.php">
+      <i class="bx bx-log-out icon"></i>
+      <span class="text nav-text"> Logout </span>
+      </a>
+    </li>
+    </div>
+
+</div>
+</div>
+</nav>
+
+<section class="home" style="position: fixed;">
+  <div class="userheader">
+  <h1><i class="bx bx-trending-up icon">&nbsp</i> SALES </h1>
+  <h2><i class="bx bxs-user usericon">&nbsp</i> Super Admin</h2>
+  </div>
+
+
+          
+<!----- INPUT CODE HERE :) ----->
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#sales" data-toggle="tab">Sales Trend</a></li>
+    <li><a href="#shifts" data-toggle="tab">Shifts</a></li>
+    <li><a href="#tax" data-toggle="tab">Tax Report</a></li>
+    <li><a href="#items" data-toggle="tab">Popular Items</a></li>
+    <li><a href="#receipts" data-toggle="tab">Receipts History</a></li>
+    <li><a href="#export" data-toggle="tab">Reports Export</a></li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="sales">
+        <div class="card--container2">
+            <h1>Sales Trend</h1>
+            <div class="dropdown-container">
+                <label for="graphType">Select Graph Type:</label>
+                <select id="graphType">
+                    <option value="line">Line Graph</option>
+                    <option value="bar">Bar Graph</option>
+                </select>
+            </div>
+                
+            <div class="graph-container">
+                <canvas id="lineChart"></canvas>
+            </div>
+            
+            <div class="graph-container">
+                <canvas id="barChart"></canvas>
+            </div>
+<br />
+            <h3>Sales Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Total Sales</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                
+                $pdoQuery = "SELECT * FROM sales_analytics";
+                $pdoResult = $pdoConnect->prepare($pdoQuery);
+                $pdoExec = $pdoResult->execute(array());
+                while ($row = $pdoResult->fetch(PDO::FETCH_ASSOC)){
+                    extract($row);
+                    echo "<tr>";
+                    echo "<td>$month</td>";
+                    echo "<td>$total_sale</td>";
+                    echo "</tr>";
+                }
+                ?>
+                    
+                </tbody>
+            </table>
+
+            <body class="bg-zinc-100 dark:bg-zinc-800">
+    <div class="max-w-screen-xl mx-auto p-4">
+        <h1 class="text-2xl font-semibold text-zinc-900 dark:text-white">Sales Summary</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+            <div class="bg-white dark:bg-zinc-700 p-4 rounded-lg shadow">
+                <h2 class="text-lg font-medium text-zinc-800 dark:text-zinc-200">Gross Sales</h2>
+                <p class="text-3xl font-semibold text-zinc-900 dark:text-white">$9,995.10</p>
+                <p class="text-sm text-green-600">+9,714.60 (+3,463.32%)</p>
+            </div>
+            <div class="bg-white dark:bg-zinc-700 p-4 rounded-lg shadow">
+                <h2 class="text-lg font-medium text-zinc-800 dark:text-zinc-200">Refunds</h2>
+                <p class="text-3xl font-semibold text-zinc-900 dark:text-white">$502.50</p>
+                <p class="text-sm text-red-600">+$502.50 (+100%)</p>
+            </div>
+            <div class="bg-white dark:bg-zinc-700 p-4 rounded-lg shadow">
+                <h2 class="text-lg font-medium text-zinc-800 dark:text-zinc-200">Discounts</h2>
+                <p class="text-3xl font-semibold text-zinc-900 dark:text-white">$4.89</p>
+                <p class="text-sm text-red-600">-$15.81 (-76.38%)</p>
+            </div>
+            <div class="bg-white dark:bg-zinc-700 p-4 rounded-lg shadow">
+                <h2 class="text-lg font-medium text-zinc-800 dark:text-zinc-200">Net Sales</h2>
+                <p class="text-3xl font-semibold text-zinc-900 dark:text-white">$9,487.71</p>
+                <p class="text-sm text-green-600">+$9,227.91 (+3,551.93%)</p>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            <h2 class="text-xl font-semibold text-zinc-900 dark:text-white">Gross Sales</h2>
+            <img src="https://placehold.co/800x300/4CAF50/FFFFFF?text=Sales+Chart" alt="Sales Chart" class="mt-2 rounded-lg shadow">
+        </div>
+
+        <div class="mt-6 bg-white dark:bg-zinc-700 p-4 rounded-lg shadow">
+            <h2 class="text-lg font-medium text-zinc-800 dark:text-zinc-200">EXPORT</h2>
+            <table class="min-w-full mt-2">
+                <thead>
+                    <tr>
+                        <th class="text-left font-medium text-zinc-600 dark:text-zinc-300">Date</th>
+                        <th class="text-left font-medium text-zinc-600 dark:text-zinc-300">Gross Sales</th>
+                        <th class="text-left font-medium text-zinc-600 dark:text-zinc-300">Refunds</th>
+                        <th class="text-left font-medium text-zinc-600 dark:text-zinc-300">Discounts</th>
+                        <th class="text-left font-medium text-zinc-600 dark:text-zinc-300">Net Sales</th>
+                        <th class="text-left font-medium text-zinc-600 dark:text-zinc-300">Cost of Goods</th>
+                        <th class="text-left font-medium text-zinc-600 dark:text-zinc-300">Gross Profit</th>
+                        <th class="text-left font-medium text-zinc-600 dark:text-zinc-300">Margin</th>
+                        <th class="text-left font-medium text-zinc-600 dark:text-zinc-300">Taxes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-zinc-800 dark:text-white">12 Apr 2022</td>
+                        <td class="text-zinc-800 dark:text-white">$1,224.50</td>
+                        <td class="text-zinc-800 dark:text-white">$7.50</td>
+                        <td class="text-zinc-800 dark:text-white">$0.00</td>
+                        <td class="text-zinc-800 dark:text-white">$1,217.00</td>
+                        <td class="text-zinc-800 dark:text-white">$753.60</td>
+                        <td class="text-zinc-800 dark:text-white">$463.40</td>
+                        <td class="text-zinc-800 dark:text-white">38.08%</td>
+                        <td class="text-zinc-800 dark:text-white">$121.70</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="shifts">
+        <div class="card--container2"> 
+
+            <h3>Sales by Employee</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Gross Sales</th>
+                        <th>Refunds</th>
+                        <th>Discounts</th>
+                        <th>Net Sales</th>
+                        <th>Receipts</th>
+                        <th>Average Sale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                
+                $pdoQuery = "SELECT * FROM shifts";
+                $pdoResult = $pdoConnect->prepare($pdoQuery);
+                $pdoExec = $pdoResult->execute(array());
+                while ($row = $pdoResult->fetch(PDO::FETCH_ASSOC)){
+                    extract($row);
+                    echo "<tr>";
+                    echo "<td>$Name</td>";
+                    echo "<td>$Gross_Sales</td>";
+                    echo "<td>$Refunds</td>";
+                    echo "<td>$Discounts</td>";
+                    echo "<td>$Net_Sales</td>";
+                    echo "<td>$Receipts</td>";
+                    echo "<td>$Average_Sale</td>";
+                    echo "</tr>";
+                }
+                ?>
+                    
+                </tbody>
+            </table>
+            <br />
+            <h3>Shifts</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>POS</th>
+                        <th>Opening time</th>
+                        <th>Closing time</th>
+                        <th>Expected cash amount</th>
+                        <th>Actual cash amount</th>
+                        <th>Difference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                
+                $pdoQuery = "SELECT * FROM shifts_2";
+                $pdoResult = $pdoConnect->prepare($pdoQuery);
+                $pdoExec = $pdoResult->execute(array());
+                while ($row = $pdoResult->fetch(PDO::FETCH_ASSOC)){
+                    extract($row);
+                    echo "<tr>";
+                    echo "<td>$POS</td>";
+                    echo "<td>$Opening</td>";
+                    echo "<td>$Closing</td>";
+                    echo "<td>$ECA</td>";
+                    echo "<td>$ACA</td>";
+                    echo "<td>$Difference</td>";
+                    echo "</tr>";
+                }
+                ?>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="tax">
+        <div class="card--container2"> 
+
+  <div class="box">
+      <h2>Tax Report</h2>
+      <div class="form-group">
+          <label for="reportDate">Report Date:</label>
+          <input type="date" id="reportDate">
+      </div>
+      <div class="form-group">
+          <label for="dateRange">Date Range:</label>
+          <div class="date-range">
+              <input type="date" id="startDate">
+              <span>-</span>
+              <input type="date" id="endDate">
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="allEmployees">All Employees:</label>
+          <input type="checkbox" id="allEmployees">
+      </div>
+      <button onclick="generateReport()">Generate Report</button>
+
+      <table id="taxReport" style="display: none;">
+          <thead>
+              <tr>
+                  <th>Receipt No.</th>
+                  <th>Date</th>
+                  <th>Employee</th>
+                  <th>Customer</th>
+                  <th>Type</th>
+                  <th>Total</th>
+              </tr>
+          </thead>
+          <tbody id="taxReportBody">
+              <tr><td colspan="6" class="no-data">No Data to Display</td></tr>
+          </tbody>
+      </table>
+      <div id="pagination" style="display: none;">
+          <button id="prevPage" onclick="prevPage()">Previous</button>
+          <span>Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+          <button id="nextPage" onclick="nextPage()">Next</button>
+      </div>
+      <button class="export-button" onclick="exportReport()">Export</button>
+  </div>
+  
+  <div class="box" id="totalsBox" style="display: none;">
+      <h2>Totals</h2>
+      <table>
+          <tfoot>
+              <tr class="total-row">
+                  <td colspan="5">Total Taxable Sales</td>
+                  <td id="totalTaxableSales">₱0.00</td>
+              </tr>
+              <tr class="total-row">
+                  <td colspan="5">Total Non-taxable Sales</td>
+                  <td id="totalNonTaxableSales">₱0.00</td>
+              </tr>
+              <tr class="total-row">
+                  <td colspan="5">Total Net Sales</td>
+                  <td id="totalNetSales">₱0.00</td>
+              </tr>
+          </tfoot>
+      </table>
+  </div>
+
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="items">
+        <div class="card--container2"> 
+            <h1>Popular Products</h1>
+
+            <div class="product">
+    <img src="img/Latundan.jpg" alt="Latundan">
+    <div class="product-info">
+        <h2>Latundan</h2>
+        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et felis nec massa interdum convallis.</p>
+        <p>Price: $70</p>
+        <p>Rating: 4.8 stars</p>
+    </div>
+</div>
+
+<div class="product">
+    <img src="img/Lakatan.jpg" alt="Lakatan">
+    <div class="product-info">
+        <h2>Lakatan</h2>
+        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et felis nec massa interdum convallis.</p>
+        <p>Price: $50</p>
+        <p>Rating: 4.5 stars</p>
+    </div>
+</div>
+
+<div class="product">
+    <img src="img/Saba.jpg" alt="Saba">
+    <div class="product-info">
+        <h2>Saba</h2>
+        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et felis nec massa interdum convallis.</p>
+        <p>Price: $90</p>
+        <p>Rating: 4.2 stars</p>
+    </div>
+</div>
+
+<div class="product">
+    <img src="img/Senorita.jpg" alt="Senorita">
+    <div class="product-info">
+        <h2>Senorita</h2>
+        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et felis nec massa interdum convallis.</p>
+        <p>Price: $90</p>
+        <p>Rating: 4.2 stars</p>
+    </div>
+</div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="receipts">
+        <div class="card--container2">
+            <h1>Receipts History</h1>
+
+             <!-- Receipt type buttons -->
+             <div class="receipt-type-container">
+                <select id="receiptTypeDropdown" onchange="toggleReceiptType(this.value)">
+                <option value="allReceipts" selected>All Receipts</option>
+            <!--    <option value="sales">Sales</option>
+                <option value="refunds">Refunds</option>-->
+            </select>
+        </div>
+
+        <!-- Search bar -->
+        <input type="text" id="searchInput" class="search-bar" onkeyup="searchTable()" placeholder="Search for Receipt No., Date, Employee, Customer, Type, or Total..">
+
+            
+            <table class="receipt" id="myTable">
+                <thead>
+                    <tr>
+                        <th>Receipt No.</th>
+                        <th>Date</th>
+                        <th>Employee</th>
+                        <th>Customer</th>
+                        <th>Type</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                
+                $pdoQuery = "SELECT * FROM receipt_history";
+                $pdoResult = $pdoConnect->prepare($pdoQuery);
+                $pdoExec = $pdoResult->execute(array());
+                while ($row = $pdoResult->fetch(PDO::FETCH_ASSOC)){
+                    extract($row);
+                    
+                    $imageURL = "get_image.php?id=$number";
+
+                    echo "<tr>";
+                    echo "<td>$number</td>";
+                    echo "<td>$date</td>";
+                    echo "<td>$employee</td>";
+                    echo "<td>$customer</td>";
+                    echo "<td>$type</td>";
+                    echo "<td>$total</td>";
+                    echo "<td><a href='#' class='preview-link' data-image-url='$imageURL'>View</a></td>";
+                    echo "</tr>";
+
+                    
+                }
+                ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="export">
+        <div class="card--container2">
+            <h1>Reports Export</h1>       
+                <label>Sales Trend</label>
+                
+                <button id="exportCSV">Export to CSV</button>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+</section>
+<script>
+/*----------------SIDEBAR JS------------------*/
+    const body = document.querySelector("body"),
+    sidebar = body.querySelector(".sidebar"),
+    toggle = body.querySelector(".toggle");
+    toggle.addEventListener("click", () =>{
+    sidebar.classList.toggle("close");
+    });
+    if(window.history.replaceState)
+    { window.history.replaceState(null, null, window.location.href); }
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+    var tabLinks = document.querySelectorAll('.nav-tabs li a');
+
+    tabLinks.forEach(function(tabLink) {
+        tabLink.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            var tabPanes = document.querySelectorAll('.tab-pane');
+            tabPanes.forEach(function(pane) {
+                pane.classList.remove('active', 'in');
+            });
+
+            tabLinks.forEach(function(link) {
+                link.parentElement.classList.remove('active');
+            });
+
+            this.parentElement.classList.add('active');
+
+            var targetPaneId = this.getAttribute('href');
+            var targetPane = document.querySelector(targetPaneId);
+            targetPane.classList.add('active', 'in');
+        });
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var previewLinks = document.querySelectorAll(".preview-link");
+    
+    previewLinks.forEach(function(link) {
+        link.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            
+            var imageURL = link.getAttribute("data-image-url");
+            displayPicture(imageURL);
+        });
+    });
+});
+
+function displayPicture(imageURL) {
+    // Create the modal container
+    var modal = document.createElement("div");
+    modal.classList.add("modal");
+
+    // Create the modal content
+    var modalContent = document.createElement("div");
+    modalContent.classList.add("modal-content");
+
+    // Create the image element
+    var image = document.createElement("img");
+    image.src = imageURL;
+    image.alt = "Receipt Image";
+
+    // Create the close button
+    var closeButton = document.createElement("span");
+    closeButton.classList.add("close");
+    closeButton.innerHTML = "&times;";
+    closeButton.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+
+    // Append the image and close button to the modal content
+    modalContent.appendChild(image);
+    modalContent.appendChild(closeButton);
+
+    // Append the modal content to the modal container
+    modal.appendChild(modalContent);
+
+    // Append the modal container to the document body
+    document.body.appendChild(modal);
+
+    // Show the modal
+    modal.style.display = "block";
+}
+
+</script>
+
+<script>
+  // Sample tax report data
+  var taxReportData = [
+      // No data initially
+  ];
+
+  var currentPage = 1;
+  var rowsPerPage = 10; // Assuming 10 rows per page
+
+  // Function to render tax report data
+  function renderTaxReport() {
+      var tbody = document.getElementById("taxReportBody");
+      var totalTaxableSales = 0;
+      var totalTaxAmount = 0;
+
+      tbody.innerHTML = ""; // Clear previous data
+
+      // Show "No Data to Display" message if tax report data is empty
+      if (taxReportData.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" class="no-data">No Data to Display</td></tr>';
+      }
+
+      // Update total fields
+      document.getElementById("totalTaxableSales").textContent = "₱" + totalTaxableSales.toFixed(2);
+      document.getElementById("totalNetSales").textContent = "₱" + (totalTaxableSales + totalTaxAmount).toFixed(2);
+  }
+
+  // Function to handle page navigation
+  function prevPage() {
+      if (currentPage > 1) {
+          currentPage--;
+          renderTaxReport();
+          updatePagination();
+      }
+  }
+
+  function nextPage() {
+      var totalPages = Math.ceil(taxReportData.length / rowsPerPage);
+      if (currentPage < totalPages) {
+          currentPage++;
+          renderTaxReport();
+          updatePagination();
+      }
+  }
+
+  function updatePagination() {
+      var totalPages = Math.ceil(taxReportData.length / rowsPerPage);
+      document.getElementById("currentPage").textContent = currentPage;
+      document.getElementById("totalPages").textContent = totalPages;
+  }
+
+  // Function to generate the report
+  function generateReport() {
+      renderTaxReport();
+      document.getElementById("taxReport").style.display = "table";
+      document.getElementById("totalsBox").style.display = "block";
+      document.getElementById("pagination").style.display = "block";
+      currentPage = 1; // Reset current page to 1
+      updatePagination();
+  }
+
+  // Function to export the report
+  function exportReport() {
+      var csvContent = "data:text/csv;charset=utf-8,";
+      csvContent += "Receipt No.,Date,Employee,Customer,Type,Total\n";
+
+      // Loop through tax report data and add each row to CSV content
+      taxReportData.forEach(function(item) {
+          var row = item.receiptNo + "," + item.date + "," + item.employee + "," + item.customer + "," + item.type + "," + item.total + "\n";
+          csvContent += row;
+      });
+
+      // Create a download link for the CSV file
+      var encodedUri = encodeURI(csvContent);
+      var link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "tax_report.csv");
+      document.body.appendChild(link);
+
+      // Trigger the download
+      link.click();
+  }
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<script src="scripts.js"></script>
+
+</br>
+</section>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div class="image-container">
+        <img src="img/r1.png" alt="Description of Image" class="img-receipt" onclick="showPreview('previewOverlay1')">
+    <div class="image-preview" id="previewOverlay1" onclick="closePreview()">
+        <img src="img/r1.png" alt="Description of Image"  class="img-logo-preview">
+        <span class="close-btn" onclick="closePreview()">X</span>
+    </div>
+
+        <img src="img/r2.png" alt="Description of Image" class="img-receipt" onclick="showPreview('previewOverlay2')">
+    <div class="image-preview" id="previewOverlay2" onclick="closePreview()">
+        <img src="img/r2.png" alt="Description of Image"  class="img-logo-preview">
+        <span class="close-btn" onclick="closePreview()">X</span>
+    </div>
+
+        <img src="img/r3.png" alt="Description of Image" class="img-receipt" onclick="showPreview('previewOverlay3')">
+    <div class="image-preview" id="previewOverlay3" onclick="closePreview()">
+        <img src="img/r3.png" alt="Description of Image"  class="img-logo-preview">
+        <span class="close-btn" onclick="closePreview()">X</span>
+    </div>
+            </div>
+
+<i class="bx bx-trending-up icon">&nbsp</i> SALES <i class="bx bx-chevron-down dropdown-icon"></i>

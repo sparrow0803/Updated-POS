@@ -1,0 +1,94 @@
+.edit-items {
+    height: 700px;
+    width: 900px;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-left: 30px;
+    border-radius: 5px;
+    font-size: large;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.head{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.submit-btn {
+    margin-top: 30px;
+    width: auto;
+    height: auto;
+    font-size: larger;
+    width: 150px;
+    padding: 7px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #F4CE14;
+    color: black; 
+    cursor: pointer;
+}
+
+.submit-btn:hover{
+    background-color: #FFF455;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.search-input{
+    margin-left: 10px;
+    width: 45%;
+    height: 30px;
+    font-size: large;
+    text-align: center;
+}
+
+
+h3{
+    margin-left: 10px;
+    margin-top: 30px;
+}
+
+.svebtn{
+    width: auto;
+    height: auto;
+    padding: 15px 45px;
+    border-radius: 10px;
+    background-color: #9b9898;
+    font-weight: bold;
+    font-size: large;
+    display: block;
+    margin: 0;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+
+}
+
+.btn{
+   display: flex;
+   justify-content: center; 
+   margin-top: 70px;
+}
+
+.bckbtn{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.bck{
+    font-size: larger;
+    width: 150px;
+    padding: 7px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #F4CE14;
+    color: black; 
+    cursor: pointer;
+}
+
+.bck:hover{
+    background-color: #FFF455;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,130 @@
+.inventory {
+    background-color: #F4CE14;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    padding: 5px 20px;
+    border-radius: 5px;
+    font-size: large;
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    cursor: pointer;
+    color: white;
+    min-width: 250px;
+    text-align: center;
+}
+
+.inventory:hover{
+    background-color: #F4CE14;
+    color: rgb(0, 0, 0);
+
+}
+.dropdown1 {
+    position: relative;
+    display: list-item;
+    display: inline;
+}
+
+.dropdown-content1 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 250px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 85px;
+    left: 100px;
+    
+    
+}
+
+.dropdown1:hover .dropdown-content1 {
+    display: block;
+}
+
+.content1 {
+    color: rgb(2, 2, 2);
+    padding: 5px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.content1:hover {
+    background-color: #FFF455;
+    color: black;
+}
+
+
+table {
+    width: 95%;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid rgb(0, 0, 0);
+    padding: 20px 8px;
+    text-align: center;
+}
+
+.table1{
+    align-items: center;
+    margin-top: 100px;
+}
+
+.header{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute; 
+    bottom: 30px; 
+    right: 50px; 
+  }
+  .page-navigation li {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 5px;
+    width: 50px;
+    height: 35px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .page-navigation li a {
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+  }
+
+.tabbox{
+    width: 90%;
+    height: 550px;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 30px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    overflow-y: scroll;
+  }
+
+  .tabbox1{
+    width: 90%;
+    height: 550px;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 30px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    overflow-y: scroll;
+  }

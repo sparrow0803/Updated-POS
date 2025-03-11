@@ -1,0 +1,275 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+*   {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    }
+:root{
+    --background-color: #222831;
+    --color: #F4CE14;
+    --hover-color: #FFF455;
+    --text-color: #000000; 
+    --text-color2: black;
+    }
+body{
+    height: 100vh;
+    background: #EEEEEE;
+    }
+
+/*---------------------SIDEBAR----------------------*/
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background: #222831;
+    z-index: 100;
+    cursor: pointer; 
+}
+.sidebar::-webkit-scrollbar{
+    display: none;
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+.sidebar.close {
+    width: 88px;
+    }
+.sidebar .text{
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 1;
+    }
+.sidebar.close .text{
+    opacity: 0;
+    }
+.sidebar.close .image{
+    opacity: 0;
+    }
+.sidebar .menu{
+    margin-top: -45px;
+    }
+.sidebar .image{
+    min-width: 30px;
+    display: flex;
+    align-items: center;
+    }
+.sidebar li{
+    height: 50px;
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    }
+.sidebar li .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    font-size: 20px;
+    }
+.sidebar li .icon,
+.sidebar li .text{
+    color: #fff;
+    }
+.sidebar header{
+    position: relative;
+    }
+.sidebar .image-text img {
+    width: 150px;
+    }
+.sidebar header .image-text{
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+    }
+header .image-text .header-text{
+    display: flex;
+    flex-direction: column;
+    }
+.header-text .name{
+    font-weight: 600;
+    }
+.sidebar header .toggle{
+    position: absolute;
+    color:#F4CE14;
+    top: 60%;
+    left: 90%;
+    font-size: 22px;
+    line-height: 50px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    }
+.sidebar li a{
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    }
+.sidebar li a:hover{
+    background: #FFF455;
+    }
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: #000000;
+    }
+.sidebar .menu-bar{
+    height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 3rem; 
+    }
+.sidebar.close .toggle{
+    left: 30%;
+    }
+.sidebar.close .sidenav-btn{
+    opacity: 0;
+    }
+.sidebar.close .sidenavoption{
+    display: none;
+    }
+
+/*----------------------SIDEBAR DROP DOWN MENU------------------------ */
+.sidenav-menu{
+    width:auto;   
+    }
+.sidenav-menu .sidenav-btn{
+    color: #ffffff;
+    display: flex;
+    height: 50px;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 8px;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    }
+.sidenav-btn i{
+    transition: 0.3s;
+    }
+.sidenav-menu.active .sidenav-btn i{
+    transform: rotate(-180deg);
+    }
+.sidenav-menu .sidenavoptions{
+    position: relative;
+    padding: 2px;
+    width:auto;
+    margin-top: 10px;
+    border-radius: 8px;
+    color: #fff;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    display: none;
+    }
+.sidenav-menu.active .sidenavoptions{
+    display: block;
+    }
+.sidenavoptions .sidenavoption{
+    display: flex;
+    height: 50px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #222831;
+    }
+.sidenavoptions .snavoption-text{
+    font-size: 14px;
+    }
+.sidenavoptions .sidenavoption:hover{
+    background: #F4CE14;
+    color: #000000;
+    }
+    .sidenavoptions a.snavoption-text{
+        color: white;
+        text-decoration: none;
+        }
+    
+    .sidenavoptions .sidenavoption a:hover {
+            background: #FFD041;
+            color: #043047;
+        }
+/*---------------------DASHBOARD HEADER---------------------*/
+.home {
+    position: relative;
+    height: 100vh;
+    left: 250px;
+    width: calc(100% - 250px);
+    }
+.home .userheader{
+    padding: 35px 40px;
+    background-color: #F4CE14;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+.home .userheader h1{
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    }
+.home .userheader h2{
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-left: 82%;
+    margin-top: -27px;
+    }
+.sidebar.close ~ .home{
+    left: 88px;
+    width: calc(100% - 88px);
+    }
+.bottom-content{
+    margin-top: 60px;
+    }
+    .button-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .button-container > button {
+        margin-right: 10px; /* Adjust the margin as needed */
+    }
+    .container-xl {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .dropdown {
+        position: relative;
+        display: list-item;
+        width: 230px;
+        height: 50px;
+    }
+    
+    .dropdown-content {
+        display: none;
+        background-color: #393b3e;
+        min-width: 220px;
+        z-index: 1;
+        font-size: 15px;
+        border-radius: 5px;
+    }
+    
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    .content {
+        color: white;
+        padding: 10px 14px;
+        width: 100%;
+        position: relative;
+    }
+    
+    .content:hover {
+        color: black;
+        border-radius: 5px;
+    }
+    

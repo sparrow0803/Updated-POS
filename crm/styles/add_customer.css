@@ -1,0 +1,89 @@
+.container-add-item-center {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-add-item {
+  max-width: 700px;
+  width: 100%;
+  padding: 25px 30px;
+  border-radius: 5px;
+  background-color: #fff;
+  margin-top: 40px;
+  margin-left: 50px;
+  border: 3px solid yellow;
+}
+
+.container-add-item h2 {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+}
+
+.container-add-item h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  height: 3px;
+  width: 30px;
+  bottom: 0;
+  background: rgb(172, 172, 3);
+}
+
+.container-add-item form .user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container-add-item form .user-details .form-group {
+  width: calc(100% / 2 - 20px);
+  margin: 20px 0 12px 0;
+}
+
+.container-add-item form .user-details .form-group input {
+  height: 40px;
+  width: 100%;
+  display: block;
+  outline: 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  border-bottom-width: 2px;
+  padding: 10px;
+}
+
+.container-add-item form .user-details .form-group .details {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.user-details .form-group input:focus,
+.user-details .input-box input:valid {
+  border-color: #9b59b6;
+}
+
+.container-add-item form .user-details .button-item {
+  height: 50px;
+  width: 100%;
+  outline: none;
+  background-color: #dfff00;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.container-add-item form .user-details .button-item:hover {
+  background-color: #ffff8f;
+}
+
+.service-table {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.service-table echo {
+  font-size: 200px;
+}
+
+/* Title */
